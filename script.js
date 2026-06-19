@@ -88,4 +88,96 @@
     `;
     document.head.appendChild(trailStyle);
 
+    // ── Days Counter ──
+    const startDate = new Date('2024-06-08T00:00:00');
+
+    function updateCounter() {
+        const now = new Date();
+        const diff = now - startDate;
+
+        if (diff < 0) return;
+
+        // Calculate years, months, days
+        let years = now.getFullYear() - startDate.getFullYear();
+        let months = now.getMonth() - startDate.getMonth();
+        let days = now.getDate() - startDate.getDate();
+        let hours = now.getHours() - startDate.getHours();
+        let minutes = now.getMinutes() - startDate.getMinutes();
+        let seconds = now.getSeconds() - startDate.getSeconds();
+
+        if (seconds < 0) { seconds += 60; minutes--; }
+        if (minutes < 0) { minutes += 60; hours--; }
+        if (hours < 0) { hours += 24; days--; }
+        if (days < 0) {
+            const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+            days += prevMonth.getDate();
+            months--;
+        }
+        if (months < 0) { months += 12; years--; }
+
+        const elYears = document.getElementById('counterYears');
+        const elMonths = document.getElementById('counterMonths');
+        const elDays = document.getElementById('counterDays');
+        const elHours = document.getElementById('counterHours');
+        const elMinutes = document.getElementById('counterMinutes');
+        const elSeconds = document.getElementById('counterSeconds');
+
+        if (elYears) elYears.textContent = years;
+        if (elMonths) elMonths.textContent = months;
+        if (elDays) elDays.textContent = days;
+        if (elHours) elHours.textContent = String(hours).padStart(2, '0');
+        if (elMinutes) elMinutes.textContent = String(minutes).padStart(2, '0');
+        if (elSeconds) elSeconds.textContent = String(seconds).padStart(2, '0');
+    }
+
+    // Only run counter if elements exist (index.html only)
+    if (document.getElementById('counterYears')) {
+        updateCounter();
+        setInterval(updateCounter, 1000);
+    }
+
+    // ── Te Amo Button ──
+    const teAmoBtn = document.getElementById('teAmoBtn');
+    const teAmoCountEl = document.getElementById('teAmoCount');
+    const teAmoBurst = document.getElementById('teAmoBurst');
+
+    if (teAmoBtn && teAmoCountEl) {
+        // Load saved count
+        let teAmoTotal = parseInt(localStorage.getItem('teAmoCount') || '0', 10);
+        teAmoCountEl.textContent = teAmoTotal;
+
+        teAmoBtn.addEventListener('click', () => {
+            // Increment and save
+            teAmoTotal++;
+            teAmoCountEl.textContent = teAmoTotal;
+            localStorage.setItem('teAmoCount', teAmoTotal);
+
+            // Button pop animation
+            teAmoBtn.classList.remove('clicked');
+            void teAmoBtn.offsetWidth; // Force reflow
+            teAmoBtn.classList.add('clicked');
+
+            // Heart burst effect
+            const burstEmojis = ['❤️', '💖', '💜', '💗', '💕', '✨', '🥰'];
+            for (let i = 0; i < 8; i++) {
+                const particle = document.createElement('span');
+                particle.classList.add('burst-heart');
+                particle.textContent = burstEmojis[Math.floor(Math.random() * burstEmojis.length)];
+
+                const angle = (i / 8) * Math.PI * 2;
+                const distance = 60 + Math.random() * 40;
+                const tx = Math.cos(angle) * distance;
+                const ty = Math.sin(angle) * distance;
+
+                particle.style.setProperty('--tx', `${tx}px`);
+                particle.style.setProperty('--ty', `${ty}px`);
+                particle.style.fontSize = `${0.8 + Math.random() * 0.8}rem`;
+
+                teAmoBurst.appendChild(particle);
+
+                setTimeout(() => particle.remove(), 900);
+            }
+        });
+    }
+
 })();

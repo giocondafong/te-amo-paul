@@ -302,6 +302,216 @@ body {
     transform: translateX(5px);
 }
 
+/* ── Days Counter ── */
+.days-counter {
+    margin-bottom: 2.5rem;
+    padding: 2rem 2.5rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    animation: fadeInUp 1.2s ease-out 1.4s both;
+}
+
+.counter-label {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 0.85rem;
+    color: var(--clr-lavender);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.counter-numbers {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+}
+
+.counter-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 50px;
+}
+
+.counter-value {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--clr-pink), var(--clr-violet));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.2;
+}
+
+.counter-unit-label {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 0.65rem;
+    color: var(--clr-white-soft);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 0.2rem;
+}
+
+.counter-separator {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--clr-lavender);
+    opacity: 0.4;
+    margin-bottom: 1rem;
+    animation: separatorPulse 1s ease-in-out infinite;
+}
+
+@keyframes separatorPulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.8; }
+}
+
+.counter-date {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 0.8rem;
+    color: var(--clr-white-soft);
+    margin-top: 1rem;
+    opacity: 0.7;
+}
+
+/* ── Te Amo Button ── */
+.te-amo-section {
+    position: relative;
+    margin-bottom: 2.5rem;
+    animation: fadeInUp 1.2s ease-out 1.6s both;
+}
+
+.te-amo-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 1rem 2.5rem;
+    border: none;
+    border-radius: 50px;
+    background: linear-gradient(135deg, var(--clr-pink), var(--clr-violet));
+    color: white;
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 0 4px 20px rgba(255, 107, 157, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.te-amo-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.te-amo-btn:hover {
+    transform: scale(1.08);
+    box-shadow: 0 8px 30px rgba(255, 107, 157, 0.5);
+}
+
+.te-amo-btn:hover::before {
+    opacity: 1;
+}
+
+.te-amo-btn:active {
+    transform: scale(0.95);
+}
+
+.te-amo-btn.clicked {
+    animation: btnPop 0.4s ease-out;
+}
+
+@keyframes btnPop {
+    0% { transform: scale(0.95); }
+    50% { transform: scale(1.15); }
+    100% { transform: scale(1); }
+}
+
+.te-amo-heart {
+    font-size: 1.3rem;
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.te-amo-btn:hover .te-amo-heart {
+    animation: heartBeat 0.8s ease-in-out;
+}
+
+.te-amo-count {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 0.85rem;
+    color: var(--clr-white-soft);
+    margin-top: 0.8rem;
+    opacity: 0.7;
+}
+
+.te-amo-number {
+    font-weight: 600;
+    color: var(--clr-pink);
+    font-size: 1rem;
+}
+
+/* ── Heart Burst Particles ── */
+.te-amo-burst {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.burst-heart {
+    position: absolute;
+    font-size: 1.2rem;
+    animation: burstOut 0.8s ease-out forwards;
+    pointer-events: none;
+}
+
+@keyframes burstOut {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(var(--tx), var(--ty)) scale(0.3);
+    }
+}
+
+/* ── Responsive: Counter ── */
+@media (max-width: 480px) {
+    .counter-numbers {
+        gap: 0.15rem;
+    }
+
+    .counter-unit {
+        min-width: 36px;
+    }
+
+    .counter-separator {
+        font-size: 1rem;
+    }
+
+    .days-counter {
+        padding: 1.5rem 1rem;
+    }
+}
+
 /* ── Infinity Symbol ── */
 .infinity-symbol {
     display: flex;
