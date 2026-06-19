@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1000 Razones por las que Te Amo, Paul 💜</title>
+    <meta name="description" content="Mil razones por las que te amo, Paul. Cada una desde el corazón.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="razones.css">
+</head>
+<body class="razones-page">
+    <div class="floating-hearts" id="floatingHearts"></div>
+    <div class="sparkle-container" id="sparkles"></div>
+
+    <!-- Back navigation -->
+    <a href="index.html" class="back-link" id="backHome">
+        <span class="back-arrow">←</span>
+        <span>Volver</span>
+    </a>
+
+    <!-- Progress bar -->
+    <div class="progress-bar" id="progressBar">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <!-- Counter -->
+    <div class="reason-counter" id="reasonCounter">
+        <span class="counter-current">0</span> / <span class="counter-total">1000</span>
+    </div>
+
+    <!-- Hero header -->
+    <header class="razones-hero">
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+        <h1 class="razones-title">
+            <span class="razones-number">1000</span>
+            <span class="razones-text">Razones por las que</span>
+            <span class="razones-highlight">Te Amo, Paul</span>
+        </h1>
+        <p class="razones-subtitle">Cada razón, un latido. Cada latido, por ti. 💜</p>
+        <div class="scroll-indicator">
+            <span>Desliza para descubrir</span>
+            <div class="scroll-arrow">↓</div>
+        </div>
+    </header>
+
+    <!-- Reasons list -->
+    <main class="razones-grid" id="razonesGrid">
+    </main>
+
+    <!-- Final message -->
+    <footer class="razones-footer">
+        <div class="glow-orb orb-3"></div>
+        <div class="footer-content">
+            <div class="heart-icon big-heart">
+                <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M32 56S6 40.5 6 22a13 13 0 0 1 26 0 13 13 0 0 1 26 0C58 40.5 32 56 32 56Z"
+                          fill="url(#heartGrad2)" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+                    <defs>
+                        <linearGradient id="heartGrad2" x1="6" y1="9" x2="58" y2="56" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#ff6b9d"/>
+                            <stop offset="1" stop-color="#c44dff"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            <h2 class="footer-title">Y podría seguir por siempre...</h2>
+            <p class="footer-text">Porque cada día descubro una razón más para amarte, Paul. 💜</p>
+            <a href="index.html" class="cta-button" id="ctaHome">
+                <span class="cta-text">← Volver al inicio</span>
+            </a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="razones.js"></script>
+</body>
+</html>

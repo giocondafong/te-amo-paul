@@ -1,0 +1,315 @@
+/* ═══════════════════════════════════════════
+   Razones Page — 1000 Reasons I Love You
+   ═══════════════════════════════════════════ */
+
+/* ── Page Layout ── */
+.razones-page {
+    display: block;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+/* ── Back Link ── */
+.back-link {
+    position: fixed;
+    top: 1.5rem;
+    left: 1.5rem;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--clr-lavender);
+    text-decoration: none;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: all 0.3s ease;
+}
+
+.back-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--clr-white);
+    transform: translateX(-3px);
+}
+
+.back-arrow {
+    transition: transform 0.3s ease;
+}
+
+.back-link:hover .back-arrow {
+    transform: translateX(-4px);
+}
+
+/* ── Progress Bar ── */
+.progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.05);
+    z-index: 200;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--clr-pink), var(--clr-violet), var(--clr-blue));
+    border-radius: 0 3px 3px 0;
+    transition: width 0.1s linear;
+    box-shadow: 0 0 10px rgba(196, 77, 255, 0.5);
+}
+
+/* ── Reason Counter ── */
+.reason-counter {
+    position: fixed;
+    top: 1.5rem;
+    right: 1.5rem;
+    z-index: 100;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 300;
+    color: var(--clr-lavender);
+    letter-spacing: 0.1em;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.counter-current {
+    font-weight: 600;
+    color: var(--clr-pink);
+}
+
+/* ── Hero Header ── */
+.razones-hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    overflow: hidden;
+}
+
+.razones-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+}
+
+.razones-number {
+    display: block;
+    font-size: clamp(5rem, 15vw, 12rem);
+    background: linear-gradient(135deg, var(--clr-pink), var(--clr-violet), var(--clr-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 40px rgba(196, 77, 255, 0.3));
+    animation: fadeInUp 1s ease-out 0.2s both;
+    letter-spacing: -0.02em;
+}
+
+.razones-text {
+    display: block;
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: clamp(1rem, 3vw, 1.6rem);
+    color: var(--clr-white-soft);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    animation: fadeInUp 1s ease-out 0.5s both;
+}
+
+.razones-highlight {
+    display: block;
+    font-size: clamp(2.5rem, 7vw, 5rem);
+    background: linear-gradient(135deg, var(--clr-violet), var(--clr-lavender));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: fadeInUp 1s ease-out 0.8s both;
+}
+
+.razones-subtitle {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: clamp(0.95rem, 2vw, 1.15rem);
+    color: var(--clr-white-soft);
+    letter-spacing: 0.04em;
+    animation: fadeInUp 1s ease-out 1.1s both;
+    margin-bottom: 3rem;
+}
+
+/* ── Scroll Indicator ── */
+.scroll-indicator {
+    animation: fadeInUp 1s ease-out 1.4s both;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--clr-lavender);
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.6;
+}
+
+.scroll-arrow {
+    font-size: 1.2rem;
+    animation: bounceDown 2s ease-in-out infinite;
+}
+
+@keyframes bounceDown {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+}
+
+/* ── Reasons Grid ── */
+.razones-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 6rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.2rem;
+}
+
+/* ── Reason Card ── */
+.reason-card {
+    position: relative;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.reason-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.reason-card:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(196, 77, 255, 0.2);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(196, 77, 255, 0.1);
+}
+
+.reason-number {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--clr-pink), var(--clr-violet));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.reason-text {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 0.95rem;
+    color: var(--clr-white-soft);
+    line-height: 1.6;
+}
+
+/* ── Milestone cards (every 100th) ── */
+.reason-card.milestone {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 3rem 2rem;
+    background: linear-gradient(135deg, rgba(255, 107, 157, 0.08), rgba(196, 77, 255, 0.08));
+    border-color: rgba(196, 77, 255, 0.15);
+}
+
+.reason-card.milestone .reason-number {
+    font-size: 3.5rem;
+}
+
+.reason-card.milestone .reason-text {
+    font-size: 1.15rem;
+    font-style: italic;
+}
+
+/* ── Footer ── */
+.razones-footer {
+    position: relative;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    overflow: hidden;
+}
+
+.footer-content {
+    position: relative;
+    z-index: 2;
+}
+
+.big-heart {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 2rem;
+}
+
+.footer-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--clr-pink), var(--clr-violet));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+}
+
+.footer-text {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 1.1rem;
+    color: var(--clr-white-soft);
+    margin-bottom: 2.5rem;
+}
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+    .razones-grid {
+        grid-template-columns: 1fr;
+        padding: 1rem 1rem 4rem;
+    }
+
+    .reason-card.milestone {
+        padding: 2rem 1.5rem;
+    }
+
+    .reason-card.milestone .reason-number {
+        font-size: 2.5rem;
+    }
+
+    .back-link span:not(.back-arrow) {
+        display: none;
+    }
+}
